@@ -1,4 +1,4 @@
-# loneJS
+# loneJSv1.0
 Dynamic Single Page Application (SPA) Without a Framework Resource &amp; Guide
 
 **STEPS TO PREVIEW IN BROWSER**
