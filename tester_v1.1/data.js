@@ -1,4 +1,4 @@
-var _DATA = {
+var DATA = {
   home: {
     test: 'Yo planet!',
     array: [ 'How', 'are', 'you?' ],
@@ -6,5 +6,6 @@ var _DATA = {
   page2: {
     test: "'Sup Earthlings???",
     array: [ 'Wanna', 'hug?' ],
-  }
+  },
+  myJsonAPI: {},
 }

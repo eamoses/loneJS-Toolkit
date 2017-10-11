@@ -1,20 +1,3 @@
-(()=>{
-  let files = [
-    "loneJS-lib/html.js",
-    "loneJS-lib/pages.js",
-    "loneJS-lib/polyfills.js",
-    "data.js"
-  ]
-  for (const file of files) {
-    let fileRef = document.createElement('script')
-    fileRef.setAttribute("type","text/javascript")
-    fileRef.setAttribute("src", file)
-    if (typeof fileRef!="undefined") {
-      document.getElementsByTagName("head")[0].appendChild(fileRef)
-    }
-  }
-})()
-
 var _COMPONENTS_STORED_GLOBALLY = []
 
 class Component {
@@ -41,7 +24,10 @@ class Component {
           if (cdata) that.data = JSON.parse(cdata)
           that.root = this.shadowRoot
           e.method()
-          if (e.update) that.update()
+          if (e.update) {
+            that.update(this)
+            // that.htmlJS.update(that.data, that.root)
+          }
         })
       }
       that.root.appendChild(clone)
@@ -58,8 +44,8 @@ class Component {
         that.data = JSON.parse(this.getAttribute('served'))
         that._ON_SET(attrName)
       }
-
     }
+
     if (!_POLYFILL_INCLUDED) {
       document.registerElement(that.tag, {prototype: proto})
     } else {
@@ -73,12 +59,13 @@ class Component {
     this.events.push( {'type': type, 'method': method, 'id': id, 'update': update} )
   }
 
-  getDir (obj, dir, mDir = dir.split(' '), oObj = { '_DATA': obj }, mObj = []) {
+  getDir (obj, dir, mDir = dir.split(' '), oObj = { 'DATA': obj }, mObj = []) {
+    if (dir === 'c.data') return this.data
     if (mDir.length > 1) {
       for (const i in mDir) {
         for (const p of mDir[i].split(/[.\[\]]/).filter(Boolean)) oObj = oObj[p]
         mObj.push(oObj)
-        oObj = { '_DATA': obj }
+        oObj = { 'DATA': obj }
       }
       oObj = mObj
     } else {
@@ -91,26 +78,45 @@ class Component {
     for (const component of _COMPONENTS_STORED_GLOBALLY) {
       if (component.hasAttribute('serve')) {
         const serve = component.getAttribute('serve')
-        component.setAttribute('served', JSON.stringify(this.getDir(_DATA, serve)))
+        component.setAttribute('served', JSON.stringify(this.getDir(DATA, serve)))
       }
     }
+  }
+
+  updateLocal() {
+    this.htmlJS.update(this.data, this.root)
   }
 
   serveDir (that) {
     if (that.hasAttribute('serve')) {
       let served = document.createAttribute('served')
-      served.value = JSON.stringify(this.getDir(_DATA, that.getAttribute('serve')))
+      served.value = JSON.stringify(this.getDir(DATA, that.getAttribute('serve')))
+      that.setAttributeNode(served)
+    }
+    else if (!that.hasAttribute('serve') && this.data) {
+      let serve = document.createAttribute('serve')
+      serve.value = 'c.data'
+      that.setAttributeNode(serve)
+      let served = document.createAttribute('served')
+      served.value = JSON.stringify(this.data)
       that.setAttributeNode(served)
     }
     let pageStatus = document.createAttribute('directory')
     pageStatus.value = window.location.hash.split('#')[1]
     that.setAttributeNode(pageStatus)
     _COMPONENTS_STORED_GLOBALLY.push(that)
-
   }
 
   I (id) { return this.root.getElementById(id) }
 
   KV (e) { return [ e.path[0].getAttribute('key'), e.path[0].getAttribute('val') ] }
+
+  E (e) { return e.path[0] }
+
+  KVE (e) { return [
+    e.path[0].getAttribute('key'),
+    e.path[0].getAttribute('val'),
+    e.path[0]
+  ] }
 
 }
