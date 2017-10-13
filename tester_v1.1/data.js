@@ -1,7 +1,9 @@
 var _DATA = {
   landing: {
     title: 'Landing Page!',
-    subTitle: '&bull; This page is set as the activePage in index.html',
+    subTitle: '&bull; This page is set as the activePage in index.html'
+      +'&#10; &bull; If not endpoint is specified, this page will show by default.'
+      +'&#10; &bull; OR: if only the the "PAGE-MAIN" group is specified: /#home.',
     endpoint: '/#home/landing',
   },
   page2: {

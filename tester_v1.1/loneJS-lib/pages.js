@@ -6,45 +6,54 @@ document.onreadystatechange = ()=>{
   }
 }
 
-_PAGE_SET = (dir, initial, hash = '')=>{
+_PAGE_SET = (dir, initial, hash = '', pageGroups = {})=>{
   event.preventDefault()
 
-  group = (tags, obj = {})=>{
+  group = (tags)=>{
     for (const tag of tags) {
       const tagName = tag.tagName
-      if (!obj[tagName]) obj[tagName] = { name:tagName, pages: [], pageNames: [] }
-      obj[tagName].pages.push(tag)
-      obj[tagName].pageNames.push(tag.getAttribute("pageName"))
+      if (!pageGroups[tagName]) pageGroups[tagName] = { name:tagName, pages: [], pageNames: [] }
+      pageGroups[tagName].pages.push(tag)
+      pageGroups[tagName].pageNames.push(tag.getAttribute("pageName"))
     }
-    return obj
+    // return obj
   }
 
   const allPageName = document.querySelectorAll('[pageName]')
-  const pageNames = group(allPageName)
+  // const pageNames = group(allPageName)
+  group(allPageName)
 
-  for (page of Object.keys(pageNames)) _PAGE_DISPLAY(pageNames[page])
 
   for (const component of _COMPONENTS_STORED_GLOBALLY) {
     let componentPages = component.shadowRoot.querySelectorAll('[pageName]')
     if (componentPages.length > 0) {
-      const cPageNames = group(componentPages)
-      for (page of Object.keys(cPageNames)) _CPAGE_DISPLAY(cPageNames[page], component.shadowRoot)
-      if (dir) {
-        for (endp of dir.split('/')) {
-          for (page of Object.keys(cPageNames)) {
-            if (cPageNames[page].pageNames.includes(endp)) {
-              console.log(': ',cPageNames[page].pageNames.includes(endp))
-              _CPAGE_DISPLAY2(cPageNames[page], component.shadowRoot, endp)
-            }
-          }
-        }
-      }
+      // const cPageNames = group(componentPages)
+      group(componentPages)
+      // for (page of Object.keys(cPageNames)) {
+      //   _CPAGE_DISPLAY(cPageNames[page])
+      // }
+      // if (dir) {
+      //   for (endp of dir.split('/')) {
+      //     for (page of Object.keys(cPageNames)) {
+      //       if (cPageNames[page].pageNames.includes(endp)) {
+      //         _CPAGE_DISPLAY(cPageNames[page], endp)
+      //       }
+      //     }
+      //   }
+      // }
     }
   }
 
+  for (page of Object.keys(pageGroups)) _CPAGE_DISPLAY(pageGroups[page])
+
   if (dir) {
     for (page of dir.split('/')) {
-      _PAGE_DISPLAY(page, 'true')
+      for (group of Object.keys(pageGroups)) {
+        if (pageGroups[group].pageNames.includes(page)) {
+          _CPAGE_DISPLAY(pageGroups[group], page)
+        }
+      }
+      // _CPAGE_DISPLAY(page, 'true')
       hash += '/' + page
     }
     _OLD_HASH = hash.slice(1)
@@ -54,19 +63,11 @@ _PAGE_SET = (dir, initial, hash = '')=>{
 
 }
 
-_CPAGE_DISPLAY2 = (page, component, dir)=>{
+_CPAGE_DISPLAY = (page, dir)=>{
   for (var i = 0; i < page.pages.length; i++) { // iOS does not like (i of arr) here... for some reason
     if (dir === page.pages[i].getAttribute('pageName')) {
       page.pages[i].setAttribute('style', 'display: initial;')
-    } else {
-      page.pages[i].setAttribute('style', 'display: none;')
-    }
-  }
-}
-
-_CPAGE_DISPLAY = (page, component)=>{
-  for (var i = 0; i < page.pages.length; i++) { // iOS does not like (i of arr) here... for some reason
-    if (page.pages[i].getAttribute('activePage') === 'true') {
+    } else if (!dir && page.pages[i].getAttribute('activePage') === 'true') {
       page.pages[i].setAttribute('style', 'display: initial;')
     } else {
       page.pages[i].setAttribute('style', 'display: none;')
@@ -74,20 +75,30 @@ _CPAGE_DISPLAY = (page, component)=>{
   }
 }
 
-_PAGE_DISPLAY = (page, active)=>{
-  if (!document.querySelector("[pageName='"+page+"']")) { return }
-  const pageGroup = active ? document.querySelector("[pageName='"+page+"']").tagName : page.name
-  const pages = active ? document.getElementsByTagName(pageGroup) : page.pages
-  for (var i = 0; i < pages.length; i++) { // iOS does not like (i of arr) here... for some reason
-    if (!active && pages[i].getAttribute('activePage') === 'true') {
-      pages[i].setAttribute('style', 'display: initial;')
-    } else if (active && page === pages[i].getAttribute('pageName')) {
-      pages[i].setAttribute('style', 'display: initial;')
-    } else {
-      pages[i].setAttribute('style', 'display: none;')
-    }
-  }
-}
+// _PAGE_DISPLAY = (page, active)=>{
+//   if (active && !document.querySelector("[pageName='"+page+"']")) { return }
+//   const pageGroup = active ? document.querySelector("[pageName='"+page+"']").tagName : page.name
+//   const pages = active ? document.getElementsByTagName(pageGroup) : page.pages
+//   for (var i = 0; i < pages.length; i++) { // iOS does not like (i of arr) here... for some reason
+//     if (!active && pages[i].getAttribute('activePage') === 'true') {
+//       pages[i].setAttribute('style', 'display: initial;')
+//     } else if (active && page === pages[i].getAttribute('pageName')) {
+//       pages[i].setAttribute('style', 'display: initial;')
+//     } else {
+//       pages[i].setAttribute('style', 'display: none;')
+//     }
+//   }
+// }
+
+// _CPAGE_DISPLAY2 = (page, component, dir)=>{
+//   for (var i = 0; i < page.pages.length; i++) { // iOS does not like (i of arr) here... for some reason
+//     if (dir === page.pages[i].getAttribute('pageName')) {
+//       page.pages[i].setAttribute('style', 'display: initial;')
+//     } else {
+//       page.pages[i].setAttribute('style', 'display: none;')
+//     }
+//   }
+// }
 
 _UPDATE_COMPONENTS = (hash)=>{
   for (const component of _COMPONENTS_STORED_GLOBALLY) {
