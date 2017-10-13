@@ -1,59 +1,49 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><title> loneJS Tester </title>
   <script type="text/javascript" src="loneJS-lib/component.js"></script><script type="text/javascript" src="loneJS-lib/html.js"></script><script type="text/javascript" src="loneJS-lib/pages.js"></script><script type="text/javascript" src="loneJS-lib/polyfills.js"></script><script type="text/javascript" src="data.js"></script>
   <link rel="stylesheet" href="main.css">
-
   <!-- COMPONENTS -->
-  <link rel="import" href="components/example-component.html">
+  <link rel="import" href="components/login.html">
+  <link rel="import" href="components/navbar.html">
+  <link rel="import" href="components/nav-page.html">
+  <link rel="import" href="components/page3.html">
+
 
 </head>
-
 <body>
 
-  <MAINp pageName="home" activePage='true'>
-    <example-component-tag serve="DATA.home"></example-component-tag>
-    <button onclick="_PAGE_SET('home/nav1')"> nav1 </button>
-    <NAVp pageName="nav1" activePage='true'>
-      nav1 <br>
-    </NAVp>
-    <NAVp pageName="nav2" activePage='true'>
-      nav2 <br>
-    </NAVp>
-    <NAVp pageName="nav3" activePage='true'>
-      nav3 <br>
-      <SUBNAVp pageName="subnav1"> subnav1 </SUBNAVp>
-      <SUBNAVp pageName="subnav2"> subnav2 </SUBNAVp>
-      <SUBNAVp pageName="subnav3"> subnav3 </SUBNAVp>
-    </NAVp>
-  </MAINp>
+  <PAGE-main pageName="home" activePage='true'>
+    <navbar-tag></navbar-tag>
 
-  <MAINp pageName="page2">
-    <example-component-tag serve="DATA.page2"></example-component-tag>
-  </MAINp>
+    <PAGE-nav pageName="landing" activePage='true'>
+      <nav-page-tag serve='_DATA.landing'></nav-page-tag>
+    </PAGE-nav>
+
+    <PAGE-nav pageName="page2">
+      <nav-page-tag serve='_DATA.page2'></nav-page-tag>
+    </PAGE-nav>
+
+    <PAGE-nav pageName="page3">                     <p> Page 3 > Endpoint: ~/#home/page3 </p>
+      <button onclick="_PAGE_SET('home/page3/subnav1')"> Page 3-1 </button>
+      <button onclick="_PAGE_SET('home/page3/subnav2')"> Page 3-2 </button>
+      <button onclick="_PAGE_SET('home/page3/subnav3')"> Page 3-3 </button> <br>
+      <page3-tag></page3-tag>
+      <!-- <PAGE-subnav pageName="subnav1"> Endpoint: ~/#home/page3/subnav1 </PAGE-subnav>
+      <PAGE-subnav pageName="subnav2"> Endpoint: ~/#home/page3/subnav2 </PAGE-subnav>
+      <PAGE-subnav pageName="subnav3">
+        Endpoint: ~/#home/page3/subnav3
+        <br> <br>let's embed endpoints to test here
+      </PAGE-subnav> -->
+    </PAGE-nav>
+
+  </PAGE-main>
+
+  <PAGE-main pageName="login">
+    <login-tag serve="_DATA.login"></login-tag>
+  </PAGE-main>
 
 </body>
-
 </html>
 
 <!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / /
-
-NEXT 3
-- review all issues.
-- draw out a plan POA in Work Flow
-- fix non-active page set to show first page in page set. (document this.)
-
-QUESTIONS ?
--
-
-ISSUES / TO DOs / On Deck
-- Simplify README.md and point to directory of the to getting_started.md (eventually loneJS.tech)
-  - copy and paste main bulk of README.md there
-  - README.md should just have basic requirments (i.e. http-server)
-- if you add an active page to more than one... LAST SHOW UP.
-  - This makes since, but..
-  - If you DON'T add an active page `activePage='true'` ALL of page tag show up
-  - FIRST should be default
-  - Add this face to page_handling.md
-- Swap back _DATA >to> DATA
-
 
 -->
