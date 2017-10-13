@@ -1,12 +1,12 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><title> loneJS Tester </title>
-  <script type="text/javascript" src="loneJS-lib/component.js"></script><script type="text/javascript" src="loneJS-lib/html.js"></script><script type="text/javascript" src="loneJS-lib/pages.js"></script><script type="text/javascript" src="loneJS-lib/polyfills.js"></script><script type="text/javascript" src="data.js"></script>
+  <script type="text/javascript" src="../loneJS-lib/component.js"></script><script type="text/javascript" src="../loneJS-lib/html.js"></script><script type="text/javascript" src="../loneJS-lib/pages.js"></script><script type="text/javascript" src="../loneJS-lib/polyfills.js"></script>
+  <script type="text/javascript" src="data.js"></script>
   <link rel="stylesheet" href="main.css">
   <!-- COMPONENTS -->
   <link rel="import" href="components/login.html">
   <link rel="import" href="components/navbar.html">
   <link rel="import" href="components/nav-page.html">
   <link rel="import" href="components/page3.html">
-
 
 </head>
 <body>
@@ -23,7 +23,8 @@
     </PAGE-nav>
 
     <PAGE-nav pageName="page3">
-      <page3-tag serve='_DATA.page3'></page3-tag>  <!-- third html "page group" tag within page3 component.                    -->
+      <!-- third html "page group" tag within page3 component. -->
+      <page3-tag serve='_DATA.page3'></page3-tag>
     </PAGE-nav>
 
   </PAGE-main>
