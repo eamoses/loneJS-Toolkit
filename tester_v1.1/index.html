@@ -22,17 +22,8 @@
       <nav-page-tag serve='_DATA.page2'></nav-page-tag>
     </PAGE-nav>
 
-    <PAGE-nav pageName="page3">                     <p> Page 3 > Endpoint: ~/#home/page3 </p>
-      <button onclick="_PAGE_SET('home/page3/subnav1')"> Page 3-1 </button>
-      <button onclick="_PAGE_SET('home/page3/subnav2')"> Page 3-2 </button>
-      <button onclick="_PAGE_SET('home/page3/subnav3')"> Page 3-3 </button> <br>
-      <page3-tag></page3-tag>
-      <!-- <PAGE-subnav pageName="subnav1"> Endpoint: ~/#home/page3/subnav1 </PAGE-subnav>
-      <PAGE-subnav pageName="subnav2"> Endpoint: ~/#home/page3/subnav2 </PAGE-subnav>
-      <PAGE-subnav pageName="subnav3">
-        Endpoint: ~/#home/page3/subnav3
-        <br> <br>let's embed endpoints to test here
-      </PAGE-subnav> -->
+    <PAGE-nav pageName="page3">
+      <page3-tag serve='_DATA.page3'></page3-tag>  <!-- third html "page group" tag within page3 component.                    -->
     </PAGE-nav>
 
   </PAGE-main>

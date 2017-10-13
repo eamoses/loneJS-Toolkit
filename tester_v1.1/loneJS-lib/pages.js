@@ -6,11 +6,8 @@ document.onreadystatechange = ()=>{
   }
 }
 
-_PAGE_SET = (dir, initial, hash = '', allPageName = [])=>{
+_PAGE_SET = (dir, initial, hash = '')=>{
   event.preventDefault()
-  //
-  //
-  // let allPageName = []
 
   group = (tags, obj = {})=>{
     for (const tag of tags) {
@@ -21,7 +18,8 @@ _PAGE_SET = (dir, initial, hash = '', allPageName = [])=>{
     }
     return obj
   }
-  allPageName = document.querySelectorAll('[pageName]')
+
+  const allPageName = document.querySelectorAll('[pageName]')
   const pageNames = group(allPageName)
 
   for (page of Object.keys(pageNames)) _PAGE_DISPLAY(pageNames[page])
@@ -54,27 +52,6 @@ _PAGE_SET = (dir, initial, hash = '', allPageName = [])=>{
     if (!initial) _UPDATE_COMPONENTS(hash)
   }
 
-  // console.log('allPageName: ',allPageName)
-  // for (const tag of allPageName) {
-  //   const tagName = tag.tagName
-  //   console.log('tagName: ',tagName)
-  //   if (!pageNames.tagName) pageNames[tagName] = tag
-  // }
-
-  //
-  //
-  // let active = document.querySelectorAll('[activePage]')
-  // for (page of active) _PAGE_DISPLAY(page.getAttribute('pageName'))
-  // // console.log('dir, initial, active: ',dir, initial, active)
-  // if (dir) {
-  //   for (page of dir.split('/')) {
-  //     _PAGE_DISPLAY(page, initial)
-  //     hash += '/' + page
-  //   }
-  //   _OLD_HASH = hash.slice(1)
-  //   window.location.href = '#' + hash.slice(1)
-  //   if (!initial) _UPDATE_COMPONENTS(hash)
-  // }
 }
 
 _CPAGE_DISPLAY2 = (page, component, dir)=>{
@@ -95,17 +72,6 @@ _CPAGE_DISPLAY = (page, component)=>{
       page.pages[i].setAttribute('style', 'display: none;')
     }
   }
-  // const pageGroup = active ? component.querySelector("[pageName='"+page+"']").tagName : page.name
-  // const pages = active ? component.getElementsByTagName(pageGroup) : page.pages
-  // for (var i = 0; i < pages.length; i++) { // iOS does not like (i of arr) here... for some reason
-  //   if (!active && pages[i].getAttribute('activePage') === 'true') {
-  //     pages[i].setAttribute('style', 'display: initial;')
-  //   } else if (active && page === pages[i].getAttribute('pageName')) {
-  //     pages[i].setAttribute('style', 'display: initial;')
-  //   } else {
-  //     pages[i].setAttribute('style', 'display: none;')
-  //   }
-  // }
 }
 
 _PAGE_DISPLAY = (page, active)=>{
@@ -122,23 +88,6 @@ _PAGE_DISPLAY = (page, active)=>{
     }
   }
 }
-
-// _PAGE_DISPLAY = (page, /*initial*/)=>{
-//   pageGroup = document.querySelector("[pageName='"+page+"']")
-//   pages = document.getElementsByTagName(pageGroup.tagName)
-//   for (var i = 0; i < pages.length; i++) { // iOS does not like (i of arr) here... for some reason
-//     const state = pages[i].getAttribute('activePage')
-//     if (page === pages[i].getAttribute('pageName') && state !== 'false') {
-//     // if (page === pages[i].getAttribute('pageName') && state === 'true') {
-//     // if (page === pages[i].getAttribute('pageName')) {
-//     // if (state === 'true') {
-//       pages[i].setAttribute('style', 'display: initial;')
-//     } else {
-//       pages[i].setAttribute('style', 'display: none;')
-//       if (state === 'false') pages[i].setAttribute('activePage', '')
-//     }
-//   }
-// }
 
 _UPDATE_COMPONENTS = (hash)=>{
   for (const component of _COMPONENTS_STORED_GLOBALLY) {

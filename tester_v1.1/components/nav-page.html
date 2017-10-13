@@ -1,12 +1,26 @@
 <template id="nav-page">
 <!-- { { { { { { { { { { { { { { { {  CSS  } } } } } } } } } } } } } } } } } -->
 <style>
-#main { text-align: center; }
+#main {
+  text-align: center;
+}
+pre {
+  font-family: Avenir;
+  font-size: 16px;
+  text-align: left;
+  margin-left: 100px;
+  white-space: pre-wrap;
+}
+span {
+ font-size: 22px;
+}
 </style>
 <!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
 <content var='{d} c.data'>
   <div id='main'>
-    {d}.title
+    <span>{d}.title</span>
+    <pre> {d}.subTitle </pre>
+    <h5> Endpoint: {d}.endpoint </h5>
   </div>
 </content>
 </template>

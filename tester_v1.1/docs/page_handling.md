@@ -1,5 +1,14 @@
 # Page Handling with LoneJS
 
+Page handling consists of
+- Page Groups (html tags)
+- Page Names  (html attribute)
+- Endpoint starting with a # ("hash" symbol). For example:
+  - `www.myBomblasticWebsite.com/#page2/setting`
+  - `#page2/setting`
+
+For a complete example and project files, visit [www.lonejs.tech/examples/page_handling](http://www.lonejs.tech/#examples/page_handling)
+
 ### Create an html "page" tag
 ```html
 <HOMEp pageName="main-home"> Main Page </HOMEp>
