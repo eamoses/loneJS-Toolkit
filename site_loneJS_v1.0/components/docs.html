@@ -24,6 +24,11 @@ div {
   padding: 5px;
   padding-top: 0px;
   background-color: rgba(0,0,0,0.1);
+  overflow: scroll;
+}
+/*.g1, .g2 {
+  color: rgba(44, 48, 81, 0.85);
+  cursor: pointer;
 }
 .g1 {
   padding: 10px 5px 10px 5px;
@@ -33,6 +38,9 @@ div {
   padding: 5px;
   padding-left: 15px;
 }
+.g1:hover, .g2:hover {
+  color: rgba(44, 58, 81, 0.6);
+}*/
 </style>
 <!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
 <content var='{d} c.data'>
@@ -40,7 +48,10 @@ div {
     <table id='docs-container'>
       <tr>
         <th id="nav-menu">
-          <div class='g1'> Getting Started </div>
+
+          <menu-test-tag></menu-test-tag>
+
+          <!-- <div class='g1'> Getting Started </div>
             <div class='g2'> Cloning the Repo </div>
             <div class='g2'> Setting up http-server </div>
             <div class='g2'> Developing with Atom </div>
@@ -54,7 +65,7 @@ div {
           <div class='g1'> Dynamic html </div>
             <div class='g2'> Something... </div>
           <div class='g1'> JavaScript in Components </div>
-            <div class='g2'> Something... </div>
+            <div class='g2'> Something... </div> -->
 
         </th>
         <th id='main-content'>
