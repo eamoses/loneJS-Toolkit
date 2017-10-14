@@ -55,7 +55,7 @@
 .right { transition: right 0.5s .5s; }*/
 
 .box:hover .right { right: 45px; }
-.box:hover .middle { right: 112px; }
+.box:hover .middle { right: 140px; }
 .box:hover .left { right: 224px; }
 .box:hover .dot { transition: right 0.5s; }
 
@@ -70,15 +70,15 @@
   transition: color .1s ;
 
 }
-.docs { right: 10px; }
-.plugins { right: 75px; }
-.components { right: 162px; }
+.docs { right: 8px; }
+.examples { right: 82px; }
+.contact { right: 198px; }
 
 .box:hover .nav-link{ color: rgba(0,0,0,0.4); transition: color 1s .2s; }
 
 .docs:hover { opacity: 0.5; transition: opacity .25s;}
-.plugins:hover { opacity: 0.5; transition: opacity .25s;}
-.components:hover { opacity: 0.5; transition: opacity .25s;}
+.examples:hover { opacity: 0.5; transition: opacity .25s;}
+.contact:hover { opacity: 0.5; transition: opacity .25s;}
 
 </style>
 <!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
@@ -88,10 +88,10 @@
       <div class='box'>
         <div class='nav-link docs' onclick="_PAGE_SET('docs')"> Docs </div>
         <div id='docs' class='dot right'></div>
-        <div class='nav-link plugins' onclick="_PAGE_SET('plugins')"> Plugins </div>
-        <div id='plugins' class='dot middle'></div>
-        <div class='nav-link components' onclick="_PAGE_SET('components')"> Components </div>
-        <div id='components' class='dot left'></div>
+        <div class='nav-link examples' onclick="_PAGE_SET('examples')"> Examples </div>
+        <div id='examples' class='dot middle'></div>
+        <div class='nav-link contact' onclick="_PAGE_SET('contact')"> Contact </div>
+        <div id='contact' class='dot left'></div>
       </div>
     <span id='navLine' class="nav-divide"></span>
   </div>
@@ -103,8 +103,8 @@
 c._ON_SET = (attr)=>{
     c.up = true
     c.I('docs').style.opacity = 1
-    c.I('plugins').style.opacity = 1
-    c.I('components').style.opacity = 1
+    c.I('examples').style.opacity = 1
+    c.I('contact').style.opacity = 1
   }
   c.animate = ()=>{
     const dir = c.directory[0] === '/' ? c.directory.slice(1) : c.directory

@@ -2,11 +2,11 @@ var _DATA = {
   home: {
     title: "Welcome to LoneJS",
   },
-  component: {
-    title: "Component Collection",
+  components: {
+    title: "Components Collection",
   },
-  plugins: {
-    title: "Plugin Collection",
+  examples: {
+    title: "Examples",
   },
   docs: {
     title: "Documentation",

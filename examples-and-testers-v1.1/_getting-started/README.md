@@ -1,4 +1,4 @@
-# Examples and Testers Projects for LoneJS 
+# loneJS v1.0
 
 **STEPS TO PREVIEW IN BROWSER**
 - go to link: https://github.com/robbobfrh84/loneJS
