@@ -1,4 +1,4 @@
-### Serving and working with Global & Local Data
+# Data Handling with LoneJS
 
 #### Case 1: Serve and use global data
 ```html

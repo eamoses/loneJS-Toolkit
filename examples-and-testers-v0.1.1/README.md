@@ -10,6 +10,6 @@ The tester folder will conceptually replace the old 'cronenberg' folder/project 
 
 ### development with tester, Examples and the loneJS site
 
-It is possible to run http-server at this directory's level and use the folder's endpoints to jump around every project within the folder. If you hit 'localhost:8080' in your url, you'll see every projects folder. 
+
 
 ### gh-pages links

@@ -1,4 +1,5 @@
-### Dynamic html Attributes with LoneJS
+# loneJS Dynamic Html
+
 - var
 - for
 - if
