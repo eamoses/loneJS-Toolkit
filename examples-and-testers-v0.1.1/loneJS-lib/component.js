@@ -109,6 +109,8 @@ class Component {
 
   I (id) { return this.root.getElementById(id) }
 
+  CL (className) { return this.root.querySelectorAll('[class='+className+']') }
+
   KV (e) { return [ e.path[0].getAttribute('key'), e.path[0].getAttribute('val') ] }
 
   E (e) { return e.path[0] }

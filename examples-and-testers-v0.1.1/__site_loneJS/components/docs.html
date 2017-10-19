@@ -3,10 +3,9 @@
 <style>
 #docs-container {
   width: 100%;
-  padding-top: -5px;
+  /*padding-top: -5px;*/
   padding-left: 5px;
   padding-right: 10px;
-  /*min-height: 80vh;*/
 }
 th {
   vertical-align: top;
@@ -18,15 +17,18 @@ div {
   background-color: rgba(0,0,0,0.05);
   width: 256px;
 }
-#main-content {
+/*#main-content {
   position: relative;
   left: 5px;
   padding: 5px;
-  padding-top: 0px;
-  background-color: rgba(0,0,0,0.1);
+  padding-top: -5px;
   overflow: scroll;
+}*/
+.sub-doc {
+  color: red;
+  cursor: pointer;
+  margin: 5px;
 }
-
 </style>
 <!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
 <content var='{d} c.data'>
@@ -35,11 +37,28 @@ div {
       <tr>
 
         <th id="nav-menu">
-          <nav-menu-tag></nav-menu-tag>
+          <!-- <nav-menu-tag></nav-menu-tag> -->
+
+          <!-- <a href="#docs/example/one">One</a> <br>
+          <a href="#docs/example/two">Two</a> <br>
+          <a href="#docs/example/three">Three</a> <br>
+          <a href="#docs/example/four">Four</a> <br>
+
+          <br> -->
+
+          <div id='docs/example/one' class='sub-doc' onclick="_PAGE_SET('docs/example/one')">One</div>
+          <div id='docs/example/two' class='sub-doc' onclick="_PAGE_SET('docs/example/two')">Two</div>
+          <div id='docs/example/three' class='sub-doc' onclick="_PAGE_SET('docs/example/three')">Three</div>
+          <div id='docs/example/four' class='sub-doc' onclick="_PAGE_SET('docs/example/four')">Four</div>
+          <div id='docs/example/five' class='sub-doc' onclick="_PAGE_SET('docs/example/five')">Five</div>
+          <div id='docs/example/six' class='sub-doc' onclick="_PAGE_SET('docs/example/six')">Six</div>
+          <div id='docs/example/seven' class='sub-doc'>Seven</div>
+
+
         </th>
 
         <th id='main-content'>
-          <mdTest-tag></mdTest-tag>
+          <example-doc-tag></example-doc-tag>
         </th>
 
       </tr>
@@ -51,7 +70,16 @@ div {
 <script>
 (( c = new Component('docs-tag') )=>{
 
+c._ON_SET = (attr)=>{
+  c.I(_OLD_HASH).style.color = 'rgba(0,0,0,0.3)'
+  if (c.oldSubDoc && (c.oldSubDoc != _OLD_HASH)) c.I(c.oldSubDoc).style.color = 'red'
+  c.oldSubDoc = _OLD_HASH
+}
 
+c._ADD_EVENT('click', 'docs/example/seven', ()=>{
+  console.log(page)
+
+}, true)
 
 c._NEW_ELM() })()
 </script>

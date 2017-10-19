@@ -12,22 +12,27 @@
       <label for='getting-started' class='g3'>   <p> Getting Started </p>
         <div class='lil_arrow'></div>
         <div class='content'>
-          <ul>
-            <li>
+          <!-- <ul> -->
+            <!-- <li> -->
               <div class="radio-toolbar">
-                <input type="radio" id="radio1" name="radios" value="all">
-                <label for="radio1">All</label>
+                <input type="radio" id="radio1" name="radios" value="false">
+                <label class='sub-doc' for="radio1"> One </label>
 
-                <input type="radio" id="radio2" name="radios" value="false" href='#/examples'>
-                <label for="radio2">Open</label>
+                <input type="radio" id="radio2" name="radios" value="false">
+                <label class='sub-doc' for="radio2">
+                  <a href="#goto"> Two </a>
+                </label>
 
                 <input type="radio" id="radio3" name="radios" value="true">
-                <label for="radio3">Archived</label>
+                <label class='sub-doc' for="radio3"> Three </label>
+
+                <input type="radio" id="radio4" name="radios" value="true">
+                <label class='sub-doc' for="radio4"> Four </label>
               </div>
-            </li>
+            <!-- </li> -->
             <!-- <li>                        <a href='#/docs'> Setting up http-server </a> </li>
             <li>                        <a href='#/docs'> Developing with Atom </a> </li> -->
-          </ul>
+          <!-- </ul> -->
         </div>
         <span></span>
       </label>
@@ -38,6 +43,7 @@
           <ul>
             <li>                        <a href='#/docs'> Create a new Component </a> </li>
             <li>                        <a href='#/docs'> Styles in Components </a> </li>
+
             <li>                        <a href='#/docs'> Serving Data to Components </a> </li>
           </ul>
         </div>
@@ -100,7 +106,12 @@
 <script>
 (( c = new Component('nav-menu-tag') )=>{
 
+c._ADD_EVENT('click', 'getting-started', ()=>{
+  var containerHeight = event.path[1].children[1]
+  containerHeight.setAttribute('style', 'height: 300px !important;')
+  console.log(containerHeight)
 
+}, true)
 
 c._NEW_ELM() })()
 </script>

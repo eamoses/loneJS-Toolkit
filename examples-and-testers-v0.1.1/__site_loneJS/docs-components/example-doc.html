@@ -1,0 +1,136 @@
+<template id="example-doc">
+<link rel="stylesheet" href="style/main.css">
+<!-- { { { { { { { { { { { { { { { {  CSS  } } } } } } } } } } } } } } } } } -->
+<style>
+#main {
+ font-size: 20px;
+ padding-left: 4px;
+}
+#doc-body {
+  background-color: rgba(0,0,0,0.1);
+  padding: 5px;
+  margin-top: -10px;
+  overflow: auto;
+  height: 100vh;
+}
+#title {
+  position: relative;
+  top: -10px;
+  padding: auto;
+}
+h2 {
+  margin: 0;
+}
+.goto {
+
+}
+</style>
+<!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
+<content var='{d} c.data'>
+  <div id='main'>
+
+    <div id='title' class='sunk-font'> Exampmle Doc </div>
+
+    <div id='doc-body'>
+
+      <!-- SAVE for bounce *Won't be visible -->
+      <div id='docs/example/one'class='marker'/>
+      <h2 id='one'>One</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>...<br>...<br>...<br>...<br>...<br>...
+
+      <div id='docs/example/two' class='marker'/>
+      <h2 id='two'>Two</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>
+
+      <div id='docs/example/three' class='marker'/>
+      <h2>Three</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>
+
+      <div id='docs/example/four' class='marker'/>
+      <h2 id='four'>Four</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>
+
+      <div id='docs/example/five'class='marker'/>
+      <h2 id='one'>Five</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>.........<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>......<br>...<br>...<br>...<br>...<br>...<br>...
+
+      <div id='docs/example/six' class='marker'/>
+      <h2 id='two'>Six</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>
+
+      <div id='docs/example/seven' class='marker'/>
+      <h2>Seven</h2>
+      ...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>...<br>
+      a <br> b <br> c
+
+    </div>
+
+  </div>
+</content>
+</template>
+<!-- () () () () () () () () () ()  JavaScript () () () () () () () () () () -->
+<script>
+(( c = new Component('example-doc-tag') )=>{
+
+  c._ON_SET = (attr)=>{
+
+    c.markers = []
+    c.oldPos = c.I('doc-body').scrollTop
+    if (!c.scroll) c.scroll = false
+
+    setTimeout(()=>{
+      if (!c.scroll) {
+        c.animateScroll(c.I(_OLD_HASH).offsetTop - 25, c.I('doc-body').scrollTop)
+      }
+      c.scroll = false
+      const marker = c.CL('marker')
+      let markPast = 0
+      for (var i = 0; i < marker.length; i++) {
+        c.markers.push([markPast, marker[i].offsetTop, marker[i].id])
+        markPast = marker[i].offsetTop+200
+      }
+    }, 100)
+    let tracker = setInterval(()=>{
+      const pos = c.I('doc-body').scrollTop
+      if (c.oldPos != pos) {
+        for (const mark of c.markers) {
+          if (pos >= mark[0] && pos < mark[1] && _OLD_HASH != mark[2]) {
+            c.scroll = true
+            _PAGE_SET(mark[2])
+          }
+        }
+      }
+      c.oldPos = pos
+    }, 100)
+  }
+
+  c.animateScroll = (goto, y)=>{
+    const dir = y > goto ? -1 : 1
+    let animate = setInterval( ()=>{
+      if ((dir === 1 && y >= goto + 10 ) || (dir === - 1 && y <= goto - 10 )) {
+        c.bounceBack(goto, y)
+        clearInterval(animate)
+      } else {
+        if (Math.abs(goto-y) < 70) y+=(15 * dir)
+        else y+=(100 * dir)
+        c.I('doc-body').scrollTop = y
+      }
+    }, 20)
+  }
+
+  c.bounceBack = (goto, y)=>{
+    const dir = y > goto ? -1 : 1
+    let animate = setInterval( ()=>{
+      if ((dir === 1 && y >= goto) || (dir === -1 && y <= goto)) {
+        c.I('doc-body').scrollTop = goto
+        clearInterval(animate)
+      } else {
+        y+=(2.5 * dir)
+        c.I('doc-body').scrollTop = y
+      }
+    }, 20)
+  }
+
+c._NEW_ELM() })()
+</script>
+<!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / / -->

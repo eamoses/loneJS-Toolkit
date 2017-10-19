@@ -7,7 +7,7 @@ document.onreadystatechange = ()=>{
 }
 
 _PAGE_SET = (dir, initial, hash = '', pageGroups = {})=>{
-  event.preventDefault()
+  if (event) event.preventDefault()
 
   group = (tags)=>{
     for (const tag of tags) {
