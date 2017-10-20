@@ -2,15 +2,6 @@
 
 Project and Development Hub for https://github.com/robbobfrh84/loneJS
 
-<<<<<<< HEAD
-### Helpful resources/links
-
-*** https://www.html5rocks.com/en/tutorials/webcomponents/imports/
-https://www.html5rocks.com/en/tutorials/webcomponents/customelements/
-https://www.webcomponents.org/polyfills
-https://github.com/WebReflection/document-register-element
-https://developers.google.com/web/fundamentals/getting-started/primers/customelements
-=======
 # Examples and Testers Projects for LoneJS
 
 Every folder starting with an **underscore** `_` is its own project that ***SHARES*** the same loneJS-Lib. Changes made to the the loneJS-lib folder can be tested against other examples easily here.
@@ -32,4 +23,3 @@ https://robbobfrh84.github.io/loneJS-Toolkit/examples-and-testers-v1.1/......
 https://robbobfrh84.github.io/loneJS-Toolkit/examples-and-testers-v0.1.1/docs/page-handling.md
 
 https://robbobfrh84.github.io/loneJS-Toolkit/examples-and-testers-v0.1.1/_page-handling/index.html
->>>>>>> 347715a26834cfdd7176a65a018c0a576e13c450
