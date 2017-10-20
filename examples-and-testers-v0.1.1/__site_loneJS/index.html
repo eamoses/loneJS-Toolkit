@@ -1,26 +1,33 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><title> loneJS </title><script type="text/javascript" src="../loneJS-lib/component.js"></script><script type="text/javascript" src="../loneJS-lib/html.js"></script><script type="text/javascript" src="../loneJS-lib/pages.js"></script><script type="text/javascript" src="../loneJS-lib/polyfills.js"></script>
   <script type="text/javascript" src="data.js"></script>
   <!-- STYLE -->
-  <link rel="stylesheet" href="style/main.css">
+  <!-- <link rel="stylesheet" href="style/main.css"> -->
   <!-- COMPONENTS -->
-  <link rel="import" href="components/navbar.html">
+  <!-- <link rel="import" href="components/navbar.html">
   <link rel="import" href="components/page-holder.html">
-  <link rel="import" href="components/landing.html">
+  <link rel="import" href="components/landing.html"> -->
   <link rel="import" href="components/docs.html">
-  <link rel="import" href="components/footer.html">
-  <link rel="import" href="components/nav-menu.html">
+  <!-- <link rel="import" href="components/footer.html"> -->
+  <!-- <link rel="import" href="components/nav-menu.html"> -->
   <!-- DOCS COMPONENTS -->
 
   <!-- TEST TO REMOVE -->
-  <link rel="import" href="docs-components/page-handling.html">
+  <!-- <link rel="import" href="docs-components/page-handling.html">
   <link rel="import" href="docs-components/example-doc.html">
-  <link rel="stylesheet" href="style/menu.css">
+  <link rel="stylesheet" href="style/menu.css"> -->
+
 
 
 </head>
 <body>
 
-  <div id="background-image"></div>
+  <docs-tag serve="_DATA.docs"></docs-tag>
+  <docs-tag serve="_DATA.home"></docs-tag>
+  <docs-tag></docs-tag>
+
+
+
+  <!-- <div id="background-image"></div>
 
   <MAINp pageName="home" activePage='true'>
     <navbar-tag serve="_DATA.home"></navbar-tag>
@@ -34,7 +41,10 @@
       <page-holder-tag serve='_DATA.examples'></page-holder-tag>
     </BODYp>
     <BODYp pageName="docs">
+      <docs-tag serve="_DATA.docs"></docs-tag>
+      <docs-tag serve="_DATA.home"></docs-tag>
       <docs-tag></docs-tag>
+
     </BODYp>
     <BODYp pageName="components">
       <page-holder-tag serve='_DATA.components'></page-holder-tag>
@@ -45,7 +55,7 @@
     <menu-test-tag></menu-test-tag>
   </MAINP>
 
-  <footer-tag></footer-tag>
+  <footer-tag></footer-tag> -->
 
 </body>
 </html>

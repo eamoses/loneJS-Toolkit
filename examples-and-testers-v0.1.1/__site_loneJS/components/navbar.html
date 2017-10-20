@@ -98,34 +98,37 @@
 </content>
 </template>
 <!-- () () () () () () () () () ()  JavaScript () () () () () () () () () () -->
-<script> /* - Starts New Component -> */ (( c = new Component('navbar-tag') )=>{
+<script>
+(( c = new Component('navbar-tag') )=>{
 
 c._ON_SET = (attr)=>{
-    c.up = true
-    c.I('docs').style.opacity = 1
-    c.I('examples').style.opacity = 1
-    c.I('contact').style.opacity = 1
-  }
-  c.animate = ()=>{
-    const dir = c.directory[0] === '/' ? c.directory.slice(1) : c.directory
-    if (c.I(dir)) {
-      const op = parseFloat(c.I(dir).style.opacity)
-      if (c.up) {
-        c.I(dir).style.opacity = op + 0.04
-        if (op >= 1) c.up = false
-      }
-      if (!c.up) {
-        c.I(dir).style.opacity = op - 0.04
-        if (op <= 0.3) c.up = true
-      }
+  c.up = true
+  c.I('docs').style.opacity = 1
+  c.I('examples').style.opacity = 1
+  c.I('contact').style.opacity = 1
+  if (c.anime) clearInterval(c.anime)
+  c.anime = setInterval(function(){
+    if (c.directory !== 'undefined') c.animate()
+  }, 50);
+}
+
+c.animate = ()=>{
+  const dir = c.directory[0] === '/' ? c.directory.slice(1) : c.directory
+  if (c.I(dir)) {
+    const op = parseFloat(c.I(dir).style.opacity)
+    if (c.up) {
+      c.I(dir).style.opacity = op + 0.04
+      if (op >= 1) c.up = false
+    }
+    if (!c.up) {
+      c.I(dir).style.opacity = op - 0.04
+      if (op <= 0.3) c.up = true
     }
   }
+}
 
-setInterval(function(){
-  if (c.directory !== 'undefined') c.animate()
-}, 50);
-
-c._NEW_ELM()})() /* ----------- Creates New Component -----------> */  </script>
+c._NEW_ELM()})()
+</script>
 
 
 <!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / / -->

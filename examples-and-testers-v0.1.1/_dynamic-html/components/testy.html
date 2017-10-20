@@ -1,0 +1,70 @@
+<template id="testy">
+<!-- { { { { { { { { { { { { { { { {  CSS  } } } } } } } } } } } } } } } } } -->
+<style>
+#main {  }
+</style>
+<!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
+<content var='{d} c.data'>
+  <!-- check
+  in
+  content
+^^
+  !!
+^^
+-->
+  <div id='main' >
+    <h3 if="c.data.title"> {d}.title </h3>
+    <h2 id='testyy'>
+      [>Click<]
+    </h2>
+  </div>
+
+  <div if='c.data.arr' for='{dd} c.data.arr'>
+    {dd}
+    <br>
+    <div class='yoyo' key='{dd}'>
+      [YOYO]
+    </div>
+  </div>
+  <hr>
+
+</content>
+</template>
+<!-- () () () () () () () () () ()  JavaScript () () () () () () () () () () -->
+<script>
+(( c = new Component('testy-tag') )=>{
+
+  c._ON_SET = (attr)=>{
+    c.data.fart = 'f-f-fart'+c.data.title
+  }
+
+  c._ADD_EVENT('click', 'testyy', ()=>{
+    c.other()
+  }, true)
+
+  c.other = ()=>{
+    console.log(c.data)
+  }
+
+  c._ADD_CL_EVENT('click', 'yoyo', ([key, val] = c.KV(event))=>{
+    console.log('YOYO', key, val)
+  }, true)
+
+c._NEW_ELM() })()
+</script>
+<!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / /
+NOTE
+- There are still some strange issues with the previous object hanging onto the duplicate component.
+- like...
+
+<div for='{dd} c.data.arr'>
+  {dd}
+  <br>
+  <div class='yoyo'>
+    [YOYO]
+  </div>
+</div>
+<hr>
+
+- ... It doesn't show the values from the prvious component, but carries it [loop] value meaning it recognizes there's nothing there, but still duplictes 3 times. However, adding the condition stops it.
+-->

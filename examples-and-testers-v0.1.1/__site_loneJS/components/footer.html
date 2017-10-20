@@ -58,6 +58,9 @@
 <!-- () () () () () () () () () ()  JavaScript () () () () () () () () () () -->
 <script>
 (( c = new Component('footer-tag') )=>{
+
+  c._ON_SET = (attr)=>{ c.resetFooter() }
+
   c.resetFooter = ()=>{
     let footer = c.I('main')
     footer.setAttribute('style', 'margin-top: 0px;')
@@ -66,10 +69,9 @@
       footer.setAttribute('style', 'margin-top: '+(diff-28)+'px;')
     }
   }
-  c._ON_SET = (attr)=>{ c.resetFooter() }
   window.onload = function(){ c.resetFooter() }
   window.onresize = function(){ c.resetFooter() }
-  c._NEW_ELM()
-})()
+
+c._NEW_ELM() })()
 </script>
 <!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / / -->

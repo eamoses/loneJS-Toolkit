@@ -5,12 +5,20 @@ class HtmlJS {
     this.jsBoolAtts = [ 'checked' ]
   }
 
-  update (updateData, root) {
+  update (updateData, root, events) {
     this.root = root
     this.clearIf()
     this.getTag(updateData, 'var')
     this.getTag(updateData, 'for')
     this.getTag(updateData, 'if')
+    // for (const e of events) {
+    //   let elm = this.root.getElementById(e.id)
+    //   elm.addEventListener(e.type, ()=>{
+    //     e.method(updateData)
+    //     // if (e.update) this.update(this)
+    //   })
+    // }
+    return updateData
   }
 
   clearIf () {

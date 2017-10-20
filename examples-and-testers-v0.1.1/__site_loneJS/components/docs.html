@@ -3,7 +3,6 @@
 <style>
 #docs-container {
   width: 100%;
-  /*padding-top: -5px;*/
   padding-left: 5px;
   padding-right: 10px;
 }
@@ -17,13 +16,6 @@ div {
   background-color: rgba(0,0,0,0.05);
   width: 256px;
 }
-/*#main-content {
-  position: relative;
-  left: 5px;
-  padding: 5px;
-  padding-top: -5px;
-  overflow: scroll;
-}*/
 .sub-doc {
   color: red;
   cursor: pointer;
@@ -31,34 +23,33 @@ div {
 }
 </style>
 <!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
-<content var='{d} c.data'>
-  <div id='main'>
+<content>
+  <div id='main' var='{d} c.data'>
     <table id='docs-container'>
       <tr>
 
         <th id="nav-menu">
           <!-- <nav-menu-tag></nav-menu-tag> -->
+          <h3 id='title' style='cursor: pointer;'>{d}.title</h3>
 
-          <!-- <a href="#docs/example/one">One</a> <br>
-          <a href="#docs/example/two">Two</a> <br>
-          <a href="#docs/example/three">Three</a> <br>
-          <a href="#docs/example/four">Four</a> <br>
 
-          <br> -->
 
-          <div id='docs/example/one' class='sub-doc' onclick="_PAGE_SET('docs/example/one')">One</div>
-          <div id='docs/example/two' class='sub-doc' onclick="_PAGE_SET('docs/example/two')">Two</div>
-          <div id='docs/example/three' class='sub-doc' onclick="_PAGE_SET('docs/example/three')">Three</div>
-          <div id='docs/example/four' class='sub-doc' onclick="_PAGE_SET('docs/example/four')">Four</div>
-          <div id='docs/example/five' class='sub-doc' onclick="_PAGE_SET('docs/example/five')">Five</div>
-          <div id='docs/example/six' class='sub-doc' onclick="_PAGE_SET('docs/example/six')">Six</div>
-          <div id='docs/example/seven' class='sub-doc'>Seven</div>
+          <!-- <div id='docs/example/one' class='sub-doc'> One </div>
+          <div id='docs/example/two' class='sub-doc'> Two </div>
+          <div id='docs/example/three' class='sub-doc'> Three </div>
+          <div id='docs/example/four' class='sub-doc'> Four </div>
+          <div id='docs/example/five' class='sub-doc'> Five </div>
+          <div id='docs/example/six' class='sub-doc'> Six </div>
+          <div id='docs/example/seven' class='sub-doc'> Seven </div> -->
 
+          <div id='testy' style='cursor: pointer;'>
+            testy
+          </div>
 
         </th>
 
         <th id='main-content'>
-          <example-doc-tag></example-doc-tag>
+          <!-- <example-doc-tag></example-doc-tag> -->
         </th>
 
       </tr>
@@ -71,15 +62,28 @@ div {
 (( c = new Component('docs-tag') )=>{
 
 c._ON_SET = (attr)=>{
-  c.I(_OLD_HASH).style.color = 'rgba(0,0,0,0.3)'
-  if (c.oldSubDoc && (c.oldSubDoc != _OLD_HASH)) c.I(c.oldSubDoc).style.color = 'red'
-  c.oldSubDoc = _OLD_HASH
+  // console.log(c.data)
+  // if (attr === 'directory') {
+  //   console.log(attr)
+  //   if (!c.skip) c.skip = false
+  //   if (c.skip === false) {
+  //     c.I(_OLD_HASH).style.color = 'rgba(0,0,0,0.3)'
+  //     if (c.oldSubDoc && (c.oldSubDoc != _OLD_HASH)) c.I(c.oldSubDoc).style.color = 'red'
+  //     c.oldSubDoc = _OLD_HASH
+  //   }
+  //   c.skip = false
+  // }
 }
 
-c._ADD_EVENT('click', 'docs/example/seven', ()=>{
-  console.log(page)
-
+c._ADD_EVENT('click', 'testy', ()=>{
+  console.log('title clicked')
 }, true)
+
+// c._ADD_CL_EVENT('click', 'sub-doc', ()=>{
+//   // c.skip = true
+//   // _PAGE_SET(event.path[0].id)
+//   console.log('click', event.path[0].id)
+// }, true)
 
 c._NEW_ELM() })()
 </script>
