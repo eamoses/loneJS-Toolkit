@@ -1,0 +1,20 @@
+html {
+  background-image: url("gfx/mediumGrain.png");
+  font-family: avenir;
+}
+button, .butt1 {
+  background-color: rgba(102,155,235,0.2);
+  font-family: avenir;
+  font-size: 14px;
+  border: none;
+  padding: 5px 7px 5px 7px;
+}
+.butt1 {
+  font-size: 18px;
+  background-color: rgba(102,155,235,0.15);
+  padding: 3px 5px 3px 5px;
+}
+button:hover, .butt1:hover {
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.1);
+}

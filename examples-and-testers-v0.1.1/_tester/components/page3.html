@@ -1,0 +1,45 @@
+<template id="page3">
+<link rel="stylesheet" href="main.css">
+<!-- { { { { { { { { { { { { { { { {  CSS  } } } } } } } } } } } } } } } } } -->
+<style>
+#main {
+  text-align: center;
+}
+span {
+ font-size: 22px;
+}
+pre {
+  font-family: Avenir;
+  font-size: 16px;
+  text-align: left;
+  margin-left: 100px;
+  white-space: pre-wrap;
+}
+</style>
+<!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
+<content var='{d} c.data'>
+  <div id='main'>
+
+    <span>{d}.title</span>
+    <pre> {d}.subTitle</pre>
+
+    <button onclick="_PAGE_SET('home/page3/subnav1')"> Page 3-1 </button>
+    <button onclick="_PAGE_SET('home/page3/subnav2')"> Page 3-2 </button>
+    <button onclick="_PAGE_SET('home/page3/subnav3')"> Page 3-3 </button> <br>
+
+    <PAGE-subnav pageName="subnav1"> <br> Welcome to Sub-nav 1 <br> Endpoint: ~/#home/page3/subnav1 </PAGE-subnav>
+    <PAGE-subnav pageName="subnav2"> <br> Welcome to Sub-nav 2 <br> Endpoint: ~/#home/page3/subnav2 </PAGE-subnav>
+    <PAGE-subnav pageName="subnav3"> <br> Welcome to Sub-nav 3 <br> Endpoint: ~/#home/page3/subnav3 </PAGE-subnav>
+
+  </div>
+</content>
+</template>
+<!-- () () () () () () () () () ()  JavaScript () () () () () () () () () () -->
+<script>
+(( c = new Component('page3-tag') )=>{
+
+
+
+c._NEW_ELM() })()
+</script>
+<!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / / -->

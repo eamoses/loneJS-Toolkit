@@ -1,0 +1,118 @@
+<template id="nav-menu">
+<link rel="stylesheet" href="style/menu.css">
+<!-- { { { { { { { { { { { { { { { {  CSS  } } } } } } } } } } } } } } } } } -->
+<style>
+
+</style>
+<!-- < < < < < < < < < < < < < < < <  html > > > > > > > > > > > > > > > > > -->
+<content var='{d} c.data'>
+  <div class='cbody'>
+    <div class='wrapper'>
+      <input id='getting-started' type='checkbox'>
+      <label for='getting-started' class='g3'>   <p> Getting Started </p>
+        <div class='lil_arrow'></div>
+        <div class='content'>
+          <!-- <ul> -->
+            <!-- <li> -->
+              <div class="radio-toolbar">
+                <input type="radio" id="radio1" name="radios" value="false">
+                <label class='sub-doc' for="radio1"> One </label>
+
+                <input type="radio" id="radio2" name="radios" value="false">
+                <label class='sub-doc' for="radio2">
+                  <a href="#goto"> Two </a>
+                </label>
+
+                <input type="radio" id="radio3" name="radios" value="true">
+                <label class='sub-doc' for="radio3"> Three </label>
+
+                <input type="radio" id="radio4" name="radios" value="true">
+                <label class='sub-doc' for="radio4"> Four </label>
+              </div>
+            <!-- </li> -->
+            <!-- <li>                        <a href='#/docs'> Setting up http-server </a> </li>
+            <li>                        <a href='#/docs'> Developing with Atom </a> </li> -->
+          <!-- </ul> -->
+        </div>
+        <span></span>
+      </label>
+      <input id='web-components' type='checkbox'>
+      <label for='web-components' class='g3'> <p> Web Components </p>
+        <div class='lil_arrow'></div>
+        <div class='content'>
+          <ul>
+            <li>                        <a href='#/docs'> Create a new Component </a> </li>
+            <li>                        <a href='#/docs'> Styles in Components </a> </li>
+
+            <li>                        <a href='#/docs'> Serving Data to Components </a> </li>
+          </ul>
+        </div>
+        <span></span>
+      </label>
+      <input id='page-handling' type='checkbox'>
+      <label for='page-handling' class='g5'> <p> Page Handling </p>
+        <div class='lil_arrow'></div>
+        <div class='content'>
+          <ul>
+            <li>                        <a href='#/docs'> Create a Page Group Tag </a> </li>
+            <li>                        <a href='#/docs'> Create a Page Tag </a> </li>
+            <li>                        <a href='#/docs'> Set Active Page </a> </li>
+            <li>                        <a href='#/docs'> Set NO Active Page </a> </li>
+            <li>                        <a href='#/docs'> Set NO Active Page </a> </li>
+          </ul>
+        </div>
+        <span></span>
+      </label>
+      <input id='dynamic-html' type='checkbox'>
+      <label for='dynamic-html' class='g2'> <p> Dynamic html </p>
+        <div class='lil_arrow'></div>
+        <div class='content'>
+          <ul>
+            <li>                        <a href='#/docs'> For... </a> </li>
+            <li>                        <a href='#/docs'> Var... </a> </li>
+          </ul>
+        </div>
+        <span></span>
+      </label>
+      <input id='data-handling' type='checkbox' >
+      <label for='data-handling' class='g2'> <p> Data Handling </p>
+        <div class='lil_arrow'></div>
+        <div class='content'>
+          <ul>
+            <li>                        <a href='#/docs'> Overview </a> </li>
+            <li>                        <a href='#/docs'> Global </a> </li>
+            <li>                        <a href='#/docs'> Local </a> </li>
+            <li>                        <a href='#/docs'> Requests </a> </li>
+          </ul>
+        </div>
+        <span></span>
+      </label>
+      <input id='js-in-components' type='checkbox' >
+      <label for='js-in-components' class='g2'> <p> JavaScript in Components</p>
+        <div class='lil_arrow'></div>
+        <div class='content'>
+          <ul>
+            <li>                        <a href='#'> Local JS </a> </li>
+            <li>                        <a href='#'> more... </a> </li>
+          </ul>
+        </div>
+        <span></span>
+      </label>
+    </div>
+  </div>
+</content>
+</template>
+<!-- () () () () () () () () () ()  JavaScript () () () () () () () () () () -->
+<script>
+(( c = new Component('nav-menu-tag') )=>{
+
+c._ADD_EVENT('click', 'getting-started', ()=>{
+  var containerHeight = event.path[1].children[1]
+  containerHeight.setAttribute('style', 'height: 300px !important;')
+  console.log(containerHeight)
+
+}, true)
+
+c._NEW_ELM() })()
+</script>
+<!--  / / / / / / / / / / / / / / /   Notes    / / / / / / / / / / / / / / / -->
